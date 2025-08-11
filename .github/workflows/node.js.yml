@@ -10,7 +10,7 @@ on:
 env:
   VITE_GITHUB_ORG: SlimeVR
   VITE_GITHUB_AUTH_TOKEN: ${{ secrets.VITE_GITHUB_AUTH_TOKEN }}
-  CLOUDFLARE_ACCOUNT_ID: 0ddcbcaf7c3c594a94b9243a7b23e3dd
+  CLOUDFLARE_ACCOUNT_ID: "0ddcbcaf7c3c594a94b9243a7b23e3dd"
 
 jobs:
   build:
