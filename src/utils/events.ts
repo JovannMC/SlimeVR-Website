@@ -118,6 +118,7 @@ export const getEventSchedule = (
 };
 
 export const sortByNextDate = (events: EventData[]): EventData[] => {
+  console.log("sortByNextDate ran", events);
   return [...events].sort(
     (a, b) =>
       getEventSchedule(a, 0).date.getTime() -

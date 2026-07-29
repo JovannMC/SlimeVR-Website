@@ -21,10 +21,13 @@ const QUESTIONS_COUNT = 5;
 
 export default function EventsPage() {
   const [events] = createResource(async () => {
+    console.log("createResource ran");
     if (import.meta.env.DEV) {
       console.log(`Development environment, using fallback events`);
       return getFallbackEvents();
     }
+
+    console.log("prod env");
 
     try {
       const response = await fetch("/api/events");
@@ -35,7 +38,11 @@ export default function EventsPage() {
       if (!response.ok)
         throw new Error(`Failed to fetch events: ${response.status}`);
 
+      console.log(`response status: ${status}`);
+
       const result = (await response.json()) as unknown[];
+
+      console.log("fetched events:", result);
 
       return result.map(toEventData);
     } catch (error) {
@@ -50,6 +57,7 @@ export default function EventsPage() {
 
   const eventsSchema = createMemo(() => {
     const schema = buildEventsJsonLd([...virtualEvents(), ...otherEvents()]);
+    console.log("generated schema", schema);
     return schema ? JSON.stringify(schema) : null;
   });
 
